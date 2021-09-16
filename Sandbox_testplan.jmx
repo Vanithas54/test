@@ -139,18 +139,14 @@ while (endExec &lt; 5) {
     	Thread.sleep(100);
     	endExec++;
     }
-    records.each { record -&gt; {
+    records.each { record -&gt; 
     	   String value = record.value();
     	   String sentDateTime = value.substring(value.indexOf(&apos;&quot;notifTime&quot;:&quot;&apos;)+16, value.indexOf(&apos;&quot;id&quot;:&quot;&apos;));
     	   p.println(record.offset() + &quot;,&quot; +sentDateTime);
         log.info(&apos;Received message: &apos; + sentDateTime)
-       }
     }
-    consumer.commitSync();
+    consumer.commitSync();    
     count = count - 100;
-    /*if( count &lt;= 0) {
-    	break;
-    }*/
 }
 consumer.close();
 p.close();</stringProp>
