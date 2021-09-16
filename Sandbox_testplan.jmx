@@ -121,7 +121,7 @@ def topic = &apos;poc-outbound1&apos;
 consumer.subscribe(Arrays.asList(topic))
 log.info(&apos;Subscribed to topic &apos; + topic)
 long count = 100L; //thread * count
-String fileName = &quot;./result1_&quot;+topic+&quot;.csv&quot;;
+String fileName = &quot;./result1_&quot;+topic+System.currentTimeMillis()+&quot;.csv&quot;;
 File file = new File(fileName); 
 boolean doesFileExist = file.exists();
 FileOutputStream f = new FileOutputStream(fileName, true);
@@ -143,7 +143,7 @@ while (endExec &lt; 5) {
     	   String value = record.value();
     	   String sentDateTime = value.substring(value.indexOf(&apos;&quot;notifTime&quot;:&quot;&apos;)+16, value.indexOf(&apos;&quot;id&quot;:&quot;&apos;));
     	   p.println(record.offset() + &quot;,&quot; +sentDateTime);
-        log.info(&apos;Received message: &apos; + sentDateTime)
+        log.info(&apos;Received message: &apos; +record.offset()+ sentDateTime)
     }
     consumer.commitSync();    
     count = count - 100;
