@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.4.1">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Test Plan" enabled="true">
+      <stringProp name="TestPlan.comments"></stringProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.tearDown_on_shutdown">true</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+        <collectionProp name="Arguments.arguments"/>
+      </elementProp>
+      <stringProp name="TestPlan.user_define_classpath"></stringProp>
+    </TestPlan>
+    <hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread Group" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">20</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <boolProp name="ThreadGroup.scheduler">true</boolProp>
+        <stringProp name="ThreadGroup.duration">60</stringProp>
+        <stringProp name="ThreadGroup.delay">1</stringProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
+      </ThreadGroup>
+      <hashTree>
+        <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="true">
+          <boolProp name="ResultCollector.error_logging">true</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <url>true</url>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <url>true</url>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+        <JSR223Listener guiclass="TestBeanGUI" testclass="JSR223Listener" testname="JSR223 Listener" enabled="true">
+          <stringProp name="cacheKey">true</stringProp>
+          <stringProp name="filename"></stringProp>
+          <stringProp name="parameters"></stringProp>
+          <stringProp name="script">props.put(&apos;bootstrap.servers&apos;, &apos;b-2.test.bj3rq9.c16.kafka.us-east-1.amazonaws.com:9092,b-1.test.bj3rq9.c16.kafka.us-east-1.amazonaws.com:9092&apos;)
+props.put(&apos;group.id&apos;, &apos;jmeter-poc-outbound1&apos;)
+props.put(&apos;enable.auto.commit&apos;, &apos;true&apos;)
+props.put(&apos;auto.commit.interval.ms&apos;, &apos;1000&apos;)
+props.put(&apos;session.timeout.ms&apos;, &apos;12000&apos;)
+props.put(&apos;fetch.max.wait.ms&apos;, &apos;1000&apos;)
+props.put(&apos;request.timeout.ms&apos;, &apos;18000&apos;)
+props.put(&apos;key.deserializer&apos;,
+        &apos;org.apache.kafka.common.serialization.StringDeserializer&apos;)
+props.put(&apos;value.deserializer&apos;,
+        &apos;org.apache.kafka.common.serialization.StringDeserializer&apos;)
+def consumer = new org.apache.kafka.clients.consumer.KafkaConsumer&lt;String, String&gt;(props)
+def topic = &apos;poc-outbound1&apos;
+
+consumer.subscribe(Arrays.asList(topic))
+log.info(&apos;Subscribed to topic &apos; + topic)
+long count = 100L; //thread * count
+String fileName = &quot;.\\result1_&quot;+topic+&quot;.csv&quot;;
+File file = new File(fileName); 
+boolean doesFileExist = file.exists();
+FileOutputStream f = new FileOutputStream(fileName, true);
+PrintStream p = new PrintStream(f);
+if(!doesFileExist) {
+  p.println(&quot;  offset  &quot;+&quot;,&quot;+&quot;  NotifTime &quot;);
+}
+boolean endProcess = false;
+int endExec = 0;
+while (endExec &lt; 5) {
+		
+    def records = consumer.poll(100)
+    int msgCount = records.count();
+    if(msgCount == 0){
+    	Thread.sleep(100);
+    	endExec++;
+    }
+    records.each { record -&gt; {
+    	   String value = record.value();
+    	   String sentDateTime = value.substring(value.indexOf(&apos;&quot;notifTime&quot;:&quot;&apos;)+16, value.indexOf(&apos;&quot;id&quot;:&quot;&apos;));
+    	   p.println(record.offset() + &quot;,&quot; +sentDateTime);
+        log.info(&apos;Received message: &apos; + sentDateTime)
+       }
+    }
+    consumer.commitSync();
+    count = count - 100;
+    /*if( count &lt;= 0) {
+    	break;
+    }*/
+}
+consumer.close();
+p.close();</stringProp>
+          <stringProp name="scriptLanguage">groovy</stringProp>
+        </JSR223Listener>
+        <hashTree/>
+        <JavaSampler guiclass="JavaTestSamplerGui" testclass="JavaSampler" testname="Producer Request" enabled="true">
+          <elementProp name="arguments" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" enabled="true">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="count" elementType="Argument">
+                <stringProp name="Argument.name">count</stringProp>
+                <stringProp name="Argument.value">1000</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="partitions" elementType="Argument">
+                <stringProp name="Argument.name">partitions</stringProp>
+                <stringProp name="Argument.value">20</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="topic" elementType="Argument">
+                <stringProp name="Argument.name">topic</stringProp>
+                <stringProp name="Argument.value">poc-inbound1</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+              <elementProp name="bootstrap_servers" elementType="Argument">
+                <stringProp name="Argument.name">bootstrap_servers</stringProp>
+                <stringProp name="Argument.value">b-2.test.bj3rq9.c16.kafka.us-east-1.amazonaws.com:9092,b-1.test.bj3rq9.c16.kafka.us-east-1.amazonaws.com:9092</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="classname">com.sampler.kafka.ProducerSampler</stringProp>
+        </JavaSampler>
+        <hashTree/>
+      </hashTree>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>
